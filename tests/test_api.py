@@ -36,7 +36,7 @@ class TestSearchAPI:
     def test_special_characters_search(self):
         query = NEGATIVE_SEARCH_QUERIES[1]
         response = requests.post(f"{API_BASE_URL}/search/results", headers=HEADERS, json=query)
-        assert response.status_code == 422, f"Ожидался статус-код 422, но получен {response.status_code}"
+        assert response.status_code == 422, f"Ожидался статус-код 422, но получен {response.status_code}"#баг, код должен возвращаться 422, а возвращается 204
         response_json = response.json()
         assert "errors" in response_json, "Ожидалась ошибка для запроса со специальными символами"
         assert response_json["errors"][0]["title"] == "Значение не должно быть пустым.", "Некорректное сообщение об ошибке"
@@ -46,7 +46,7 @@ class TestSearchAPI:
     def test_emoji_search(self):
         query = NEGATIVE_SEARCH_QUERIES[2]
         response = requests.post(f"{API_BASE_URL}/search/results", headers=HEADERS, json=query)
-        assert response.status_code == 422, f"Ожидался статус-код 422, но получен {response.status_code}"
+        assert response.status_code == 422, f"Ожидался статус-код 422, но получен {response.status_code}"#баг, код должен возвращаться 422, а возвращается 204
         response_json = response.json()
         assert "errors" in response_json, "Ожидалась ошибка для запроса с эмодзи"
         assert response_json["errors"][0]["title"] == "Значение не должно быть пустым.", "Некорректное сообщение об ошибке"

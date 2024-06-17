@@ -11,7 +11,7 @@ class BaseTest:
     @pytest.fixture(scope="class")
     def driver(self):
         driver = webdriver.Chrome()
-        driver.maximize_window()  # Разворачиваем окно во весь экран
+        driver.maximize_window()
         driver.implicitly_wait(10)
         yield driver
         driver.quit()
